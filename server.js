@@ -1,6 +1,6 @@
 var express = require("express")
 var app = express()
-var db = require("./database.js")
+var db = require("./databas.js")
 
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -15,8 +15,8 @@ app.listen(HTTP_PORT, () => {
 
 app.use(express.static('public'))
 
-/*app.get("/api/cars/", (req, res, next) => {
-  var sql = "select * from cars"
+app.get("/api/getusers/", (req, res, next) => {
+  var sql = "select * from users"
   var params = []
   db.all(sql, params, (err, rows) => {
       if (err) {
@@ -28,9 +28,18 @@ app.use(express.static('public'))
           "data":rows
       })
     });
-});*/
+});
 /*
-
+SELECT users.player, games.name, ratings.stars
+from games
+inner join ratings
+on games.id = 
+ratings.games_id
+inner join users
+on users.id =
+ratings.users_id
+*/
+/*
 app.get("/api/cars/make/", (req, res, next) => {
     var sql = "select make from cars"
     var params = []
