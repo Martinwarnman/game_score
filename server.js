@@ -15,7 +15,7 @@ app.listen(HTTP_PORT, () => {
 
 app.use(express.static('public'))
 
-app.get("/api/getusers/", (req, res, next) => {
+app.get("/getusers", (req, res, next) => {
   var sql = "select * from users"
   var params = []
   db.all(sql, params, (err, rows) => {
