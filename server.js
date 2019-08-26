@@ -29,19 +29,8 @@ app.get("/api/getusers/", (req, res, next) => {
       })
     });
 });
-/*
-SELECT users.player, games.name, ratings.stars
-from games
-inner join ratings
-on games.id = 
-ratings.games_id
-inner join users
-on users.id =
-ratings.users_id
-*/
-/*
-app.get("/api/cars/make/", (req, res, next) => {
-    var sql = "select make from cars"
+app.get("/pns", (req, res, next) => {
+    var sql = "SELECT users.player, games.name, ratings.stars from games inner join ratings on games.id = ratings.games_id inner join users on users.id = ratings.users_id"
     var params = []
     db.all(sql, params, (err, rows) => {
         if (err) {
@@ -54,7 +43,7 @@ app.get("/api/cars/make/", (req, res, next) => {
         })
       });
 });
-*/
+
 /*
 app.get("/api/cars/model/", (req, res, next) => {
     var sql = "select model from cars"

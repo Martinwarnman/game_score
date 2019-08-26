@@ -14,7 +14,7 @@
                 // Send a GET request               
                 const listUsers = async () => {
     try {
-        const res = await axios.get('http://localhost:8000/api/users');
+        const res = await axios.get('http://localhost:8000/pns');
         console.log(res.data.data); 
     } catch (err) {
         console.error(err);
