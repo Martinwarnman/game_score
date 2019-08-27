@@ -7,8 +7,35 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.js"></script>
   <style>
-        
-    
+  body{
+background-color:rgb(29, 29, 29);
+color:rgb(52, 215, 236);
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+   }  
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid rgb(80, 80, 80);
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #2e41b3e8;}
+
+#customers tr:hover {background-color: rgb(56, 255, 145);}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: rgb(83, 83, 83) 58, 38);
+  color: black;
+}
+
   </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,32 +54,34 @@
  url: "http://localhost:8000/pns",
  dataType: "json",
  success: function (result, status, xhr) {
- var html = ""
+var html = "<table id='customers'>"
  for(var i = 0; i < result.data.length; i++){
 
  console.log(i);
- html += "<p>"+result.data[i].player+"</p>"
- html += "<p>"+result.data[i].name+"</p>"
- html += "<p>"+result.data[i].stars+"</p>"
+
+ html += "<tr><td>"+result.data[i].player+"</td>"
+ html += "<td>"+result.data[i].name+"</td>"
+ html += "<td>"+result.data[i].stars+"</td></tr>"
 
  }
+ html += "</table>"
  document.getElementById("root").innerHTML = html
+
  },
  error: function (xhr, status, error) {
  alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
  }
  });     
  
-    /*  var string = "<table>";
-    data.data.forEach(car => {
-      string += "<tr><td>" + games.name + "</td></tr>";
+    /*  
+    data.data.forEach(game => {
+      string += "" + games.name + "";
       console.log(games.name)
     })
     string += "</table>";
     document.getElementById("root").innerHTML = string;
   } else {
     console.log('error')
-  }*/
 
 /*
 var ourReguest = new XMLHttpRequest();
