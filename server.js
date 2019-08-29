@@ -3,16 +3,14 @@ var app = express()
 var db = require("./databas.js")
 
 var bodyParser = require("body-parser");
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
 var HTTP_PORT = 8000
-
 // Start server
 app.listen(HTTP_PORT, () => {
     console.log("Server running on port %PORT%".replace("%PORT%",HTTP_PORT))
 });
-
 app.use(express.static('public'))
 
 app.get("/getusers", (req, res, next) => {
@@ -44,20 +42,47 @@ app.get("/pns", (req, res, next) => {
         })
       });
 });
+/*
+db.run(`INSERT INTO gamess (name, creator, year) VALUES (?,?,?)`, "x1", function(err) {
+  if (err) {
+  return console.log(err.message);
+  }
+  // get the last insert id
+  c1= this.lastID;
+  console.log(`1.A row has been inserted with rowid ${this.lastID}`);
+  console.log(this.lastID);
+  db.run(`INSERT INTO users (player,age) VALUES (?,?)`, "x1", function(err) {
+  if (err) {
+  return console.log(err.message);
+  }
+  // get the last insert id
+  c2= this.lastID;
+  console.log(`2.2.A row has been inserted with rowid ${c1} ${this.lastID}`);
+  console.log(this.lastID);
+  db.run(`INSERT INTO ratings (users_id,games_id) VALUES (?,?)`,c1,c2,function(err) {
+  if (err) {
+  return console.log(err.message);
+  }
+  console.log(`3.A row has been inserted with rowid ${c1} ${c2} ${this.lastID}`);
+  console.log(this.lastID);
+  })
+  })
+  })
+*/
 
 app.post("/add", (req, res, next) => {
- console.log(req.body.namn)
+ console.log(req.body.name)
   var sql = "INSERT INTO games(name, creator, year) VALUES (?,?,?)"
  db.run(sql, [req.body.name,req.body.creator,req.body.year], function(err) {
     if (err) {
       res.status(400).json({"error":err.message});
+      return;
     }
     res.json({
   "message":"success"
-  })
+   })
   })//end of db.run
 });
-
 app.get("/", (req, res, next) => {
     res.json({"message":"Ok"})
 });
