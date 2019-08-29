@@ -45,21 +45,17 @@ app.get("/pns", (req, res, next) => {
       });
 });
 
-
-
-
 app.post("/add", (req, res, next) => {
  console.log(req.body.namn)
-  var sql = "INSERT INTO games(name) VALUES (?)"
- db.run(sql, params, (err, row) => {
- if (err) {
- res.status(400).json({"error":err.message});
- return;
-
- res.json({
- "message":"success"
-})
-}});
+  var sql = "INSERT INTO games(name, creator, year) VALUES (?,?,?)"
+ db.run(sql, [req.body.name,req.body.creator,req.body.year], function(err) {
+    if (err) {
+      res.status(400).json({"error":err.message});
+    }
+    res.json({
+  "message":"success"
+  })
+  })//end of db.run
 });
 
 app.get("/", (req, res, next) => {
