@@ -61,7 +61,7 @@ var html = "<table id='customers'>"
 
  html += "<tr><td>"+result.data[i].player+"</td>"
  html += "<td>"+result.data[i].name+"</td>"
- html += "<td>"+result.data[i].stars+" Stars"+"</td></tr>"
+ html += "<td>"+result.data[i].stars+"Stars"+"</td></tr>"
 
  }
  html += "</table>"
@@ -111,5 +111,20 @@ request.send()
 
         
 </script>
+<br>
+<form method="POST" action="http://localhost:8000/add2">
+  <label for="player">player</label>
+   <input name="player" type="text" >
+   <br>
+   
+    <label for="name">games</label>
+     <input name="name" type="text" >
+     <br>
+     
+      <label for="stars">ratings</label>
+       <input name="stars" type="text" >
+    
+<input type="submit" value="Skicka"/>
+</form>
 </body>
 </html> 

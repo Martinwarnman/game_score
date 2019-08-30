@@ -42,8 +42,11 @@ app.get("/pns", (req, res, next) => {
         })
       });
 });
-/*
-db.run(`INSERT INTO gamess (name, creator, year) VALUES (?,?,?)`, "x1", function(err) {
+
+app.post("/add2", (req, res, next) => {
+console.log(req.body);
+
+db.run(`INSERT INTO games (name, creator, year) VALUES (?,?,?)`, [req.body.name,req.body.creator,req.body.year], function(err) {
   if (err) {
   return console.log(err.message);
   }
@@ -51,15 +54,16 @@ db.run(`INSERT INTO gamess (name, creator, year) VALUES (?,?,?)`, "x1", function
   c1= this.lastID;
   console.log(`1.A row has been inserted with rowid ${this.lastID}`);
   console.log(this.lastID);
-  db.run(`INSERT INTO users (player,age) VALUES (?,?)`, "x1", function(err) {
+  db.run(`INSERT INTO users (player,age) VALUES (?,?)`, [req.body.player,req.body.age], function(err) {
   if (err) {
   return console.log(err.message);
   }
+  
   // get the last insert id
   c2= this.lastID;
   console.log(`2.2.A row has been inserted with rowid ${c1} ${this.lastID}`);
   console.log(this.lastID);
-  db.run(`INSERT INTO ratings (users_id,games_id) VALUES (?,?)`,c1,c2,function(err) {
+  db.run(`INSERT INTO ratings (stars,users_id,games_id) VALUES (?,?,?)`,[req.body.stars,c2,c1],function(err) {
   if (err) {
   return console.log(err.message);
   }
@@ -68,8 +72,11 @@ db.run(`INSERT INTO gamess (name, creator, year) VALUES (?,?,?)`, "x1", function
   })
   })
   })
-*/
-
+  res.json({
+    "message":"success"
+     })
+    })//end of db.run
+/*
 app.post("/add", (req, res, next) => {
  console.log(req.body.name)
   var sql = "INSERT INTO games(name, creator, year) VALUES (?,?,?)"
@@ -83,6 +90,7 @@ app.post("/add", (req, res, next) => {
    })
   })//end of db.run
 });
+*/
 app.get("/", (req, res, next) => {
     res.json({"message":"Ok"})
 });
