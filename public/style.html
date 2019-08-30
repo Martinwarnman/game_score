@@ -7,6 +7,10 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.js"></script>
   <style>
+#box {
+  background-color:rgb(29, 29, 29);
+
+}
   body{
 background-color:rgb(29, 29, 29);
 color:rgb(52, 215, 236);
@@ -114,17 +118,17 @@ request.send()
 <br>
 <form method="POST" action="http://localhost:8000/add2">
   <label for="player">player</label>
-   <input name="player" type="text" >
+   <input name="player" type="text" id="box">
    <br>
    
     <label for="name">games</label>
-     <input name="name" type="text" >
+     <input name="name" type="text" id="box" >
      <br>
      
       <label for="stars">ratings</label>
-       <input name="stars" type="text" >
+       <input name="stars" type="text" id="box">
     
-<input type="submit" value="Skicka"/>
+<input type="submit" value="Skicka" id="box"/>
 </form>
 </body>
 </html> 
